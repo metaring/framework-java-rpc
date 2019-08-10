@@ -49,17 +49,17 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-auth</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.7</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-crypto</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.7</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-email</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.7</version>
         </dependency>
     </dependencies>
 
