@@ -18,7 +18,7 @@
 
     <groupId>com.metaring</groupId>
     <artifactId>framework-java-rpc</artifactId>
-    <version>1.2.5-SNAPSHOT</version>
+    <version>1.2.5</version>
 
     <name>MetaRing Framework Java RPC</name>
     <description>Module for communication</description>
@@ -42,7 +42,7 @@
     <scm>
         <url>https://github.com/metaring/framework-java-rpc.git</url>
         <developerConnection>scm:git:git@github.com:metaring/framework-java-rpc.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.2.5</tag>
     </scm>
 
     <dependencies>
