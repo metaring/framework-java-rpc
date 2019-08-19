@@ -1,12 +1,12 @@
 /**
  *    Copyright 2019 MetaRing s.r.l.
- * 
+ *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
  *    You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an "AS IS" BASIS,
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,8 +23,6 @@ import java.util.LinkedList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-import com.metaring.framework.Core;
-import com.metaring.framework.SysKB;
 import com.metaring.framework.Tools;
 import com.metaring.framework.auth.AuthModuleHelper;
 import com.metaring.framework.auth.InternalFunctionalityAccessException;
@@ -54,10 +52,6 @@ public class CallFunctionalityImpl extends CallFunctionality {
     public static final String KEY_SOURCE_IP = "functionality.ip";
     public static final String KEY_DATA = "functionality.data";
 
-    protected CallFunctionalityImpl(SysKB sysKB) {
-        super(sysKB);
-    }
-
     public static final CompletableFuture<FunctionalityExecutionResult> execute(Long id, String sourceIp, String broadcastKeyName, String broadcastKey, boolean stateless, String rpcRequest) {
         FunctionalityContext functionalityContext = new FunctionalityContext();
         functionalityContext.getData().put(CallFunctionalityImpl.KEY_ID, id);
@@ -68,7 +62,7 @@ public class CallFunctionalityImpl extends CallFunctionality {
             functionalityContext.getData().put(broadcastKeyName, broadcastKey);
         }
         try {
-            return ((CallFunctionalityImpl) FunctionalitiesProvider.getFunctionality(RpcFunctionalitiesManager.CALL, CallFunctionality.class, Core.SYSKB)).execute(functionalityContext, RpcRequest.fromJson(rpcRequest));
+            return ((CallFunctionalityImpl) FunctionalitiesProvider.getFunctionality(RpcFunctionalitiesManager.CALL, CallFunctionality.class)).execute(functionalityContext, RpcRequest.fromJson(rpcRequest));
         } catch (FunctionalityCreationException e) {
             return null;
         }

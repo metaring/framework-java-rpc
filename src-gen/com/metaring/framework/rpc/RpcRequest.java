@@ -93,6 +93,50 @@ public class RpcRequest implements GeneratedCoreType {
         return rpcRequest;
     }
 
+    public static RpcRequest fromObject(Object object) {
+
+        if(object == null) {
+            return null;
+        }
+
+        DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.fromObject(object);
+
+        Long id = null;
+        if(dataRepresentation.hasProperty("id")) {
+            try {
+                id = dataRepresentation.getDigit("id");
+            } catch (Exception e) {
+            }
+        }
+
+        DataRepresentation data = null;
+        if(dataRepresentation.hasProperty("data")) {
+            try {
+                data = dataRepresentation.get("data");
+            } catch (Exception e) {
+            }
+        }
+
+        String name = null;
+        if(dataRepresentation.hasProperty("name")) {
+            try {
+                name = dataRepresentation.getText("name");
+            } catch (Exception e) {
+            }
+        }
+
+        DataRepresentation param = null;
+        if(dataRepresentation.hasProperty("param")) {
+            try {
+                param = dataRepresentation.get("param");
+            } catch (Exception e) {
+            }
+        }
+
+        RpcRequest rpcRequest = create(id, data, name, param);
+        return rpcRequest;
+    }
+
     public DataRepresentation toDataRepresentation() {
         DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.create();
         if (id != null) {

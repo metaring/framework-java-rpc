@@ -80,6 +80,42 @@ public class RpcResponse implements GeneratedCoreType {
         return rpcResponse;
     }
 
+    public static RpcResponse fromObject(Object object) {
+
+        if(object == null) {
+            return null;
+        }
+
+        DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.fromObject(object);
+
+        Long id = null;
+        if(dataRepresentation.hasProperty("id")) {
+            try {
+                id = dataRepresentation.getDigit("id");
+            } catch (Exception e) {
+            }
+        }
+
+        FunctionalityExecutionResult result = null;
+        if(dataRepresentation.hasProperty("result")) {
+            try {
+                result = dataRepresentation.get("result", FunctionalityExecutionResult.class);
+            } catch (Exception e) {
+            }
+        }
+
+        DataRepresentation data = null;
+        if(dataRepresentation.hasProperty("data")) {
+            try {
+                data = dataRepresentation.get("data");
+            } catch (Exception e) {
+            }
+        }
+
+        RpcResponse rpcResponse = create(id, result, data);
+        return rpcResponse;
+    }
+
     public DataRepresentation toDataRepresentation() {
         DataRepresentation dataRepresentation = Tools.FACTORY_DATA_REPRESENTATION.create();
         if (id != null) {

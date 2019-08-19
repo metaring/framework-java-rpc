@@ -1,16 +1,20 @@
 package com.metaring.framework.rpc;
 
-import com.metaring.framework.SysKB;
 import java.util.concurrent.CompletableFuture;
 import com.metaring.framework.functionality.AbstractFunctionality;
 import com.metaring.framework.functionality.GeneratedFunctionality;
+import com.metaring.framework.functionality.FunctionalityInfo;
 import com.metaring.framework.rpc.RpcRequest;
 import com.metaring.framework.rpc.RpcResponse;
 
-public abstract class CallFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
+abstract class CallFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
 
-    protected CallFunctionality(SysKB sysKB) {
-        super(sysKB, RpcFunctionalitiesManager.CALL, RpcResponse.class);
+    static final FunctionalityInfo INFO = FunctionalityInfo.create("com.metaring.framework.rpc.call", true, false, false, "com.metaring.framework.rpc.RpcRequest", "com.metaring.framework.rpc.RpcResponse");
+
+    static final CallFunctionality INSTANCE = new CallFunctionalityImpl();
+
+    protected CallFunctionality() {
+        super(INFO, RpcResponse.class);
     }
 
     @Override
@@ -111,9 +115,5 @@ public abstract class CallFunctionality extends AbstractFunctionality implements
     @Override
     protected final Object getInputFromJsonWork(String inputJson) {
         return RpcRequest.fromJson(inputJson);
-    }
-
-    protected static final CallFunctionality create(SysKB sysKB) {
-        return new CallFunctionalityImpl(sysKB);
     }
 }

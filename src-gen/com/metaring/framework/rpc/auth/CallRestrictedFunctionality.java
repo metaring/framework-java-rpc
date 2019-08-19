@@ -1,16 +1,20 @@
 package com.metaring.framework.rpc.auth;
 
-import com.metaring.framework.SysKB;
 import java.util.concurrent.CompletableFuture;
 import com.metaring.framework.functionality.AbstractFunctionality;
 import com.metaring.framework.functionality.GeneratedFunctionality;
+import com.metaring.framework.functionality.FunctionalityInfo;
 import com.metaring.framework.rpc.RpcRequest;
 import com.metaring.framework.rpc.RpcResponse;
 
-public abstract class CallRestrictedFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
+abstract class CallRestrictedFunctionality extends AbstractFunctionality implements GeneratedFunctionality {
 
-    protected CallRestrictedFunctionality(SysKB sysKB) {
-        super(sysKB, AuthFunctionalitiesManager.CALL_RESTRICTED, RpcResponse.class);
+    static final FunctionalityInfo INFO = FunctionalityInfo.create("com.metaring.framework.rpc.auth.callRestricted", true, true, false, "com.metaring.framework.rpc.RpcRequest", "com.metaring.framework.rpc.RpcResponse");
+
+    static final CallRestrictedFunctionality INSTANCE = new CallRestrictedFunctionalityImpl();
+
+    protected CallRestrictedFunctionality() {
+        super(INFO, RpcResponse.class);
     }
 
     @Override
@@ -111,9 +115,5 @@ public abstract class CallRestrictedFunctionality extends AbstractFunctionality 
     @Override
     protected final Object getInputFromJsonWork(String inputJson) {
         return RpcRequest.fromJson(inputJson);
-    }
-
-    protected static final CallRestrictedFunctionality create(SysKB sysKB) {
-        return new CallRestrictedFunctionalityImpl(sysKB);
     }
 }

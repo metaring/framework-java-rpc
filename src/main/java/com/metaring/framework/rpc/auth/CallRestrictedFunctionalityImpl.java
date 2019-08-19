@@ -1,12 +1,12 @@
 /**
  *    Copyright 2019 MetaRing s.r.l.
- * 
+ *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
  *    You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an "AS IS" BASIS,
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,8 +19,6 @@ package com.metaring.framework.rpc.auth;
 import java.util.concurrent.CompletableFuture;
 
 import com.ea.async.Async;
-
-import com.metaring.framework.SysKB;
 import com.metaring.framework.auth.AuthFunctionalitiesManager;
 import com.metaring.framework.auth.AuthModuleHelper;
 import com.metaring.framework.auth.InternalFunctionalityAccessException;
@@ -34,10 +32,6 @@ import com.metaring.framework.rpc.RpcResponse;
 import com.metaring.framework.type.DataRepresentation;
 
 class CallRestrictedFunctionalityImpl extends CallRestrictedFunctionality {
-
-    protected CallRestrictedFunctionalityImpl(SysKB sysKB) {
-        super(sysKB);
-    }
 
     @Override
     protected final CompletableFuture<Void> preConditionCheck(RpcRequest input) throws Exception {

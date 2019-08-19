@@ -10,7 +10,7 @@ import com.metaring.framework.rpc.RpcResponse;
 
 public class RpcFunctionalitiesManager extends FunctionalitiesManager implements GeneratedFunctionalitiesManager {
 
-    public static final FunctionalityInfo CALL = FunctionalityInfo.create("com.metaring.framework.rpc.call", true, false, false, "com.metaring.framework.rpc.RpcRequest", "com.metaring.framework.rpc.RpcResponse");
+    public static final FunctionalityInfo CALL = CallFunctionality.INFO;
 
     public static final CompletableFuture<RpcResponse> call(RpcRequest rpcRequest) {
         return call(CALL, CallFunctionality.class, getCallingFunctionality(), rpcRequest, result -> result.as(RpcResponse.class));

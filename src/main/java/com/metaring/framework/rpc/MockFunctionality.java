@@ -3,7 +3,6 @@ package com.metaring.framework.rpc;
 import java.util.concurrent.CompletableFuture;
 
 import com.ea.async.Async;
-import com.metaring.framework.Core;
 import com.metaring.framework.auth.AuthModuleHelper;
 import com.metaring.framework.functionality.AbstractFunctionality;
 import com.metaring.framework.functionality.FunctionalitiesManager;
@@ -21,6 +20,7 @@ public class MockFunctionality extends AbstractFunctionality {
         public final Object input;
 
         protected MockInfo(FunctionalityInfo info, Object input) {
+            super();
             this.info = info;
             this.input = input;
         }
@@ -38,7 +38,7 @@ public class MockFunctionality extends AbstractFunctionality {
     }
 
     private MockFunctionality() {
-        super(Core.SYSKB, FunctionalityInfo.create("", true, false, false, MockInfo.class.getName().toLowerCase(), null), FunctionalityExecutionResult.class);
+        super(FunctionalityInfo.create("", true, false, false, MockInfo.class.getName().toLowerCase(), null), FunctionalityExecutionResult.class);
     }
 
     protected final MockInfo create(FunctionalityInfo info, Object input) {
@@ -68,7 +68,7 @@ public class MockFunctionality extends AbstractFunctionality {
     @Override
     protected CompletableFuture<Object> call(Object input) throws Exception {
         MockInfo mockInfo = (MockInfo) input;
-        FunctionalityExecutionResult result = Async.await(FunctionalitiesManager.executeFromJson(mockInfo.info.getFunctionalityFullyQualifiedName(), this, mockInfo.input == null ? "null" : dataRepresentationfromObject(mockInfo.input).toJson()));
+        FunctionalityExecutionResult result = Async.await(FunctionalitiesManager.executeFromJson(mockInfo.info.getFunctionalityFullyQualifiedName(), this, mockInfo.input == null ? "null" : dataRepresentationFromObject(mockInfo.input).toJson()));
         return end(result);
     }
 
