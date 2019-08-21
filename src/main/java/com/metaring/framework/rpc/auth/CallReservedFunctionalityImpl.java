@@ -29,7 +29,7 @@ import com.metaring.framework.rpc.RpcResponse;
 
 class CallReservedFunctionalityImpl extends CallReservedFunctionality {
 
-    private static final String CALL_RESTRICTED_FUNCTIONALITY_FULLY_QUALIFIED_NAME = AuthFunctionalitiesManager.CALL_RESTRICTED.getFunctionalityFullyQualifiedName();
+    private static final String CALL_RESTRICTED_FUNCTIONALITY_FULLY_QUALIFIED_NAME = CallRestrictedFunctionality.INFO.getFunctionalityFullyQualifiedName();
 
     @Override
     protected CompletableFuture<Void> preConditionCheck(RpcRequest input) throws Exception {
