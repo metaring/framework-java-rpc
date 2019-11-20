@@ -178,9 +178,10 @@ public class CallFunctionalityImpl extends CallFunctionality {
                 String stackTrace = cleanStackTrace(e);
                 System.err.println("UNMANAGED EXCEPTION:\n\n" + stackTrace + "\n");
                 try {
-                    BugReportMail.send(getContextData(KEY_ID), await(encrypt(null, getContextData(KEY_SOURCE_IP))), await(encrypt(null, input.toJson())), functionalityExecutionResult, stackTrace);
-                }
-                catch (Exception exx) {
+                    if (!StringUtil.isNullOrEmpty(input.getParam().getEmail("email"))) {
+                        BugReportMail.send(getContextData(KEY_ID), await(encrypt(null, getContextData(KEY_SOURCE_IP))), await(encrypt(null, input.toJson())), functionalityExecutionResult, stackTrace);
+                    }
+                } catch (Exception exx) {
                     exx.printStackTrace();
                 }
             }
