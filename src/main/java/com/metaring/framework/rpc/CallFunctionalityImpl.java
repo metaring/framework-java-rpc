@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
+import com.metaring.framework.Core;
 import com.metaring.framework.Tools;
 import com.metaring.framework.auth.AuthModuleHelper;
 import com.metaring.framework.auth.InternalFunctionalityAccessException;
@@ -178,7 +179,7 @@ public class CallFunctionalityImpl extends CallFunctionality {
                 String stackTrace = cleanStackTrace(e);
                 System.err.println("UNMANAGED EXCEPTION:\n\n" + stackTrace + "\n");
                 try {
-                    if (!StringUtil.isNullOrEmpty(input.getParam().getEmail("email"))) {
+                    if (!Core.SYSKB.get("email").get("supportTeam").isEmpty()) {
                         BugReportMail.send(getContextData(KEY_ID), await(encrypt(null, getContextData(KEY_SOURCE_IP))), await(encrypt(null, input.toJson())), functionalityExecutionResult, stackTrace);
                     }
                 } catch (Exception exx) {
