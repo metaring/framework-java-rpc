@@ -43,6 +43,7 @@ import com.metaring.framework.functionality.UnmanagedException;
 import com.metaring.framework.rpc.auth.AuthFunctionalitiesManager;
 import com.metaring.framework.rpc.auth.MissingRpcValueException;
 import com.metaring.framework.type.DataRepresentation;
+import com.metaring.framework.util.ObjectUtil;
 import com.metaring.framework.util.StringUtil;
 
 public class CallFunctionalityImpl extends CallFunctionality {
@@ -179,7 +180,7 @@ public class CallFunctionalityImpl extends CallFunctionality {
                 String stackTrace = cleanStackTrace(e);
                 System.err.println("UNMANAGED EXCEPTION:\n\n" + stackTrace + "\n");
                 try {
-                    if (!Core.SYSKB.get("email").get("supportTeam").isEmpty()) {
+                    if (!ObjectUtil.isNullOrEmpty(Core.SYSKB.get("email")) && !ObjectUtil.isNullOrEmpty(Core.SYSKB.get("email").get("supportTeam"))) {
                         BugReportMail.send(getContextData(KEY_ID), await(encrypt(null, getContextData(KEY_SOURCE_IP))), await(encrypt(null, input.toJson())), functionalityExecutionResult, stackTrace);
                     }
                 } catch (Exception exx) {
