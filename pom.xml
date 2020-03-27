@@ -18,7 +18,7 @@
 
     <groupId>com.metaring</groupId>
     <artifactId>framework-java-rpc</artifactId>
-    <version>1.5.6-SNAPSHOT</version>
+    <version>1.5.7-SNAPSHOT</version>
 
     <name>MetaRing Framework Java RPC</name>
     <description>Module for communication</description>
@@ -49,17 +49,17 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-auth</artifactId>
-            <version>1.5.5</version>
+            <version>1.5.6</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-crypto</artifactId>
-            <version>1.5.5</version>
+            <version>1.5.6</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>framework-java-email</artifactId>
-            <version>1.5.5</version>
+            <version>1.5.6</version>
         </dependency>
     </dependencies>
 
